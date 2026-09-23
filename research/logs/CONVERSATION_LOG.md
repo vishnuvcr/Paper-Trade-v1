@@ -2,10 +2,19 @@
 
 ## 2026-09-23
 
-User reported a GitHub Pages 404 while visiting the root host `https://vishnuvcr.github.io/`.
+User requested a separate NoDip strategy option with two far-expiry selections:
+- current 3-week far expiry;
+- new 1-week far expiry.
 
-Diagnosis: `Paper-Trade-v1` is a GitHub Pages **project site**, not the account-level user site. GitHub project sites are served at `https://<owner>.github.io/<repositoryname>/`.
+Implementation decision:
+- preserve the 3-week variant as the control (NODIP_3W);
+- add an independent 1-week variant (NODIP_1W);
+- near expiry remains the nearest listed expiry;
+- far expiry is the first listed expiry on/after near expiry + 21 calendar days for 3W, or +7 calendar days for 1W;
+- near CE/PE remain ATM at near expiry;
+- far CE is the immediately higher listed strike than ATM at the selected far expiry;
+- far PE is the immediately lower listed strike than ATM at the selected far expiry;
+- the CBR gate remains unchanged;
+- both variants exit on the previous trading session before the near expiry.
 
-Action: documented the correct URL as `https://vishnuvcr.github.io/Paper-Trade-v1/`, changed the Pages workflow to deploy on every push to `main`, and triggered a deployment via the resulting commit.
-
-No manuscript is being generated.
+No prospective trade parameters are tuned from observations; the two variants are separate pre-specified research arms.
