@@ -7,6 +7,14 @@ Paper-only prospective validation for two frozen option strategies:
 
 This repository is **not a manuscript repository**. It is an operational research and paper-trading validation harness.
 
+## GitHub Pages
+
+This is a **project site**, so its URL is:
+
+**https://vishnuvcr.github.io/Paper-Trade-v1/**
+
+The root URL `https://vishnuvcr.github.io/` is the separate user/organization site location and is expected to return 404 until a repository named `vishnuvcr.github.io` exists. GitHub documents project sites as `<owner>.github.io/<repositoryname>`.
+
 ## Current status
 
 | Phase | Branch | Status |
@@ -18,7 +26,7 @@ This repository is **not a manuscript repository**. It is an operational researc
 | 4. GitHub Pages | phase-4-pages | DONE |
 | 5. Validation controls | phase-5-validation | DONE |
 
-The phase-5 branch contains the integrated implementation. Merge it to main to activate scheduled workflows on the default branch.
+The integrated implementation is on `main`. The Pages workflow now deploys on every push to `main`, on its schedule, and through a manual workflow button.
 
 ## Automatic schedule
 
@@ -26,7 +34,7 @@ The phase-5 branch contains the integrated implementation. Merge it to main to a
 - NoDip near-expiry close check: 15:25 IST on weekdays.
 - MC-RQ6-v1 assessment: 09:30 IST on weekdays; only D3 is eligible.
 - Open-position marks: 10:15, 12:15, 14:15, 15:15, 15:25 and 15:35 IST on weekdays.
-- GitHub Pages deployment: every 15 minutes during the market window plus a manual button.
+- GitHub Pages deployment: every 15 minutes during the market window, on push, plus a manual button.
 - Every workflow exposes workflow_dispatch/manual execution.
 
 ## Scientific controls
