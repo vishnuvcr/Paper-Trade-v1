@@ -10,3 +10,4 @@
 - 2026-09-23 P5 DONE — CI validation passed after corrections.
 
 Current operational state: prospective paper-trading platform is on main; Pages deployment is being initialized/updated.
+- 2026-09-23 P5.1 DONE — Manual Runner #1 failure diagnosed as BSE/SENSEX provider JSON failure; master runner changed to fail closed per underlying and manual workflow hardened.
