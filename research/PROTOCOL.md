@@ -4,21 +4,29 @@ The system is paper-only. It records what would have been traded using informati
 
 ## NoDip
 
-Underlying: NIFTY. Signal time: 09:35 IST. Contract: nearest listed expiry.
+Underlying: NIFTY. Signal time: 09:35 IST. Each scheduled scan evaluates two independent frozen variants.
 
-ATM is the listed strike nearest point-in-time spot; lower strike wins ties. Near CE/PE = ATM CE/PE. Far CE = immediately higher listed CE strike. Far PE = immediately lower listed PE strike.
+### NoDip — 3W far expiry
+
+Near expiry = nearest listed expiry on or after the observation date. Far expiry = first listed expiry on or after near expiry + 21 calendar days.
+
+### NoDip — 1W far expiry
+
+Near expiry = nearest listed expiry on or after the observation date. Far expiry = first listed expiry on or after near expiry + 7 calendar days.
+
+For both variants, ATM is the listed near-expiry strike nearest the point-in-time NIFTY spot; lower strike wins ties. Near CE/PE = ATM CE/PE at the near expiry. Far CE = the immediately higher listed strike than ATM at the selected far expiry. Far PE = the immediately lower listed strike than ATM at the selected far expiry.
 
 All four LTPs must be finite and strictly positive.
 
-CBR = (Far CE / Near CE) / (Far PE / Near PE).
+CBR = (Far-expiry CE / Near-expiry CE) / (Far-expiry PE / Near-expiry PE).
 
 CBR > 1.20 means no trade. CBR <= 1.20 is eligible.
 
-Legs: BUY Near PE; SELL Near CE; BUY Far CE; SELL Far PE.
+Legs: BUY Near PE; SELL Near CE; BUY Far-expiry CE; SELL Far-expiry PE.
 
 BUY entry uses ask + 2 points when ask exists, otherwise LTP + 2. SELL uses bid - 2 points when bid exists, otherwise LTP - 2. Non-positive executable prices invalidate entry.
 
-Exit is the previous trading session at 15:20 IST before expiry.
+Both variants exit on the previous trading session at 15:20 IST before the **near expiry**. The selected far expiry is therefore a maturity choice for the far legs, not the holding period.
 
 ## MC-RQ6-v1
 
