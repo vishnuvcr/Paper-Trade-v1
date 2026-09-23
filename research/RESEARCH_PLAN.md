@@ -5,7 +5,9 @@
 Build a paper-only prospective validation system for two frozen option strategies:
 
 1. NoDip: NIFTY four-leg option-chain strategy based on the supplied CBR rule.
-2. MC-RQ6-v1: the frozen BATMAN Monte-Carlo four-leg strategy recovered from the supplied MC3 reference repository.
+2. NoDip — 3W far expiry: the current/control NoDip maturity configuration.
+3. NoDip — 1W far expiry: the added alternative NoDip maturity configuration.
+4. MC-RQ6-v1: the frozen BATMAN Monte-Carlo four-leg strategy recovered from the supplied MC3 reference repository.
 
 A manuscript is explicitly out of scope.
 
@@ -16,6 +18,7 @@ A manuscript is explicitly out of scope.
 - RQ3: What are prospective trade frequency, gate rate, execution availability and net paper P&L under the frozen rules and documented frictions?
 - RQ4: How sensitive are observations to bid/ask availability, adverse slippage, statutory/venue costs and lot-size chronology?
 - RQ5: Are observations reproducible from stored source snapshots and configuration fingerprints?
+- RQ6: How do the frozen NoDip far-expiry variants (3-week versus 1-week maturity selection) differ in signal availability, executable entry and prospective net P&L while holding the entry gate and near-expiry holding rule constant?
 
 ## Phase plan
 
