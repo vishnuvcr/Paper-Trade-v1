@@ -1,14 +1,12 @@
 # Status Log
 
-| Date | Step | Status | Outcome |
-|---|---|---|---|
-| 2026-09-23 | P0.1 | DONE | Repository bootstrapped. |
-| 2026-09-23 | P1 | DONE | Protocol, configs, data-source registry, cache and logs established. |
-| 2026-09-23 | P2 | DONE | NoDip and MC-RQ6 deterministic strategy primitives plus unit tests added. |
-| 2026-09-23 | P3 | DONE | Public data adapters, cost model, append-only ledger, configuration lock and scheduled workflows added. |
-| 2026-09-23 | P4 | DONE | Static GitHub Pages generator and scheduled/manual Pages deployment added. |
-| 2026-09-23 | P5 | DONE | Integration CI, prospective controls and NoDip expiry-headroom/exit corrections added. |
+- 2026-09-23 P0.1 DONE — repository bootstrapped.
+- 2026-09-23 P1 DONE — protocol, configuration, source registry and cache created.
+- 2026-09-23 P2 DONE — deterministic strategy engines and tests created.
+- 2026-09-23 P3 DONE — paper ledger, public data adapters, costs and schedules created.
+- 2026-09-23 P4 DONE — Pages generator and deployment workflow created.
+- 2026-09-23 P4.1 DONE — project-site URL corrected/documented as https://vishnuvcr.github.io/Paper-Trade-v1/.
+- 2026-09-23 P4.2 IN PROGRESS — Pages workflow changed to deploy on push to main; deployment run 35861408658 is currently in progress.
+- 2026-09-23 P5 DONE — CI validation passed after corrections.
 
-## Integrated state
-
-The phase-5 branch is the release candidate. No prospective market evidence is claimed until the scheduled workflows execute against actual exchange/provider data after merge to main.
+Current operational state: prospective paper-trading platform is on main; Pages deployment is being initialized/updated.
