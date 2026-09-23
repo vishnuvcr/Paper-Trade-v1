@@ -1,22 +1,11 @@
 # Conversation / Decision Log
 
-## 2026-09-23 — User request
+## 2026-09-23
 
-Create a new paper-trading GitHub Pages project in vishnuvcr/Paper-Trade-v1 for:
-- the supplied NoDip NIFTY CBR strategy;
-- the supplied MC-RQ6-v1 four-leg Monte-Carlo strategy;
-- prospective validation;
-- automatic public data retrieval;
-- one master manual workflow;
-- scheduled assessment and entry workflows;
-- scientific auditability;
-- MC-OPTIONS-VERIFICATION-MC3 as reference;
-- no manuscript output.
+User reported a GitHub Pages 404 while visiting the root host `https://vishnuvcr.github.io/`.
 
-## Design decisions
+Diagnosis: `Paper-Trade-v1` is a GitHub Pages **project site**, not the account-level user site. GitHub project sites are served at `https://<owner>.github.io/<repositoryname>/`.
 
-- Paper-only; no live broker orders.
-- MC-RQ6-v1 remains frozen to the MC3 control.
-- NoDip is deterministic from the supplied diagram; operational definitions are frozen before first prospective trade.
-- Source snapshots, timestamps, config fingerprints and append-only ledgers are mandatory.
-- Prospective results are not used for tuning.
+Action: documented the correct URL as `https://vishnuvcr.github.io/Paper-Trade-v1/`, changed the Pages workflow to deploy on every push to `main`, and triggered a deployment via the resulting commit.
+
+No manuscript is being generated.
