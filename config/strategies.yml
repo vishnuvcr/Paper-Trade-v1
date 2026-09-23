@@ -1,0 +1,38 @@
+common:
+  timezone: Asia/Kolkata
+  primary_slippage_points: 2.0
+  one_position_per_signature: true
+
+nodip:
+  enabled: true
+  underlying: NIFTY
+  signal_time: "09:35"
+  gate_cbr_max: 1.20
+  expiry_selection: nearest_listed
+  near_definition: ATM
+  far_definition: adjacent_listed_strike
+  exit:
+    rule: previous_trading_session
+    time: "15:20"
+
+mc_rq6:
+  enabled: true
+  underlyings:
+    - NIFTY
+    - SENSEX
+  signal_target: "09:30"
+  acceptance_window:
+    - "09:25"
+    - "09:40"
+  history_returns: 756
+  paths: 5000
+  seed: 756
+  horizon_sessions: 3
+  quantiles:
+    - 0.20
+    - 0.35
+    - 0.65
+    - 0.80
+  gate: gross_mc_ev_gt_0
+  slippage_points: 2.0
+  exit: expiry_settlement
