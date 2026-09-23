@@ -1,14 +1,23 @@
 # Error / Limitation Log
 
-## 2026-09-23 — Repository inspection
+## 2026-09-23 — Foundation
 
-- The new repository was initially empty. GitHub Contents API returned 404 because no commit existed.
-- Resolution: bootstrap README on main before creating phase branches.
+The target repository was initially empty; root content lookup returned 404 because no commit existed. Resolved by bootstrapping README before phase branching.
 
-## Persistent limitations
+## Design limitations
 
-- GitHub Actions schedules are best-effort and can be delayed; actual timestamps are stored.
-- Public option-chain endpoints can be rate-limited or change schema.
-- Third-party BSE data are not exchange-authoritative.
-- Historical executable option bid/ask archives may require licensed data; no historical quotes are fabricated.
-- Paytm Money pricing can vary by account/time; the configured number is a research assumption.
+- GitHub Actions schedules are best-effort; actual observation timestamps are retained.
+- Public option-chain providers can rate-limit or change schema; provider failure is logged and fails closed.
+- SENSEX live data use a third-party integration and are labelled accordingly.
+- Historical executable option bid/ask archives are not fabricated; the prospective layer uses current quotes only.
+- Paytm Money brokerage is configurable because public pricing can vary by account/date.
+- BSE holiday-feed automation is not treated as authoritative unless a machine-readable BSE calendar is available; the current D3 control uses the checked-in Indian market holiday baseline and live expiry.
+
+## Corrections made during implementation
+
+1. NoDip far strikes were frozen as adjacent listed strikes rather than arbitrary distance assumptions.
+2. NoDip spot is derived from target-expiry put-call parity against previous close, not from strike medians.
+3. NoDip does not open a position when the selected expiry is the current session.
+4. NoDip near-expiry closing uses the previous trading session, not the MC D3 date.
+5. MC SENSEX scans are guarded by the same explicit D3 calendar test before entry.
+6. Configuration fingerprint is stored after the first prospective trade and checked before later runs.
