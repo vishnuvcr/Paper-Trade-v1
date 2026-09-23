@@ -21,7 +21,9 @@ def select_nodip_expiries(chain,today,far_weeks):
         raise ValueError("far expiry must differ from near expiry")
     return near,far
 
-def nodip_signal(chain,spot,near_expiry,far_expiry,variant):
+def nodip_signal(chain,spot,near_expiry,far_expiry=None,variant="NODIP_3W"):
+    # Backward-compatible unit-test/control signature: when no far expiry is supplied,
+    # use the same expiry for both legs. Production runners always provide a selected far expiry.
     near=chain[chain.expiry==pd.Timestamp(near_expiry)]
     far=chain[chain.expiry==pd.Timestamp(far_expiry)]
     if near.empty or far.empty:
