@@ -2,7 +2,8 @@
 
 Paper-only prospective validation for two frozen option strategies:
 
-- **NoDip / NIFTY** — four-leg CBR strategy from the supplied flowchart.
+- **NoDip — 3W far expiry / NIFTY** — current/control four-leg CBR variant.
+- **NoDip — 1W far expiry / NIFTY** — separate alternative maturity variant.
 - **MC-RQ6-v1 / NIFTY + SENSEX** — frozen four-leg Monte-Carlo strategy based on the supplied MC3 reference.
 
 This repository is **not a manuscript repository**. It is an operational research and paper-trading validation harness.
@@ -30,12 +31,12 @@ The integrated implementation is on `main`. The Pages workflow now deploys on ev
 
 ## Automatic schedule
 
-- NoDip assessment: 09:35 IST on weekdays.
-- NoDip near-expiry close check: 15:25 IST on weekdays.
+- NoDip assessment: 09:35 IST on weekdays; the scheduled run evaluates both the 3W and 1W far-expiry variants independently.
+- NoDip near-expiry close check: 15:25 IST on weekdays; each variant exits relative to its near expiry.
 - MC-RQ6-v1 assessment: 09:30 IST on weekdays; only D3 is eligible.
 - Open-position marks: 10:15, 12:15, 14:15, 15:15, 15:25 and 15:35 IST on weekdays.
 - GitHub Pages deployment: every 15 minutes during the market window, on push, plus a manual button.
-- Every workflow exposes workflow_dispatch/manual execution.
+- Every workflow exposes workflow_dispatch/manual execution. The NoDip workflow lets you choose ALL, NODIP_3W, or NODIP_1W.
 
 ## Scientific controls
 
@@ -51,7 +52,7 @@ The integrated implementation is on `main`. The Pages workflow now deploys on ev
 
 ## Data hierarchy
 
-NIFTY live options use the public NSE option-chain path with indiaopt and direct NSE fallback. SENSEX uses the indiaopt BSE integration with explicit third-party provenance. Historical underlying closes use cached Yahoo Finance chart data. Expiry comes from the live chain rather than weekday assumptions.
+NIFTY live options use the public NSE option-chain path with indiaopt and direct NSE fallback. NoDip evaluates the nearest expiry plus either a 1-week or 3-week far expiry. SENSEX uses the official BSE option-chain path first, with an explicit third-party fallback. Historical underlying closes use cached Yahoo Finance chart data. Expiry comes from the live chain rather than weekday assumptions.
 
 ## Reference
 

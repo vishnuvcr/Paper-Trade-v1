@@ -5,13 +5,10 @@
 - 2026-09-23 P2 DONE — deterministic strategy engines and tests created.
 - 2026-09-23 P3 DONE — paper ledger, public data adapters, costs and schedules created.
 - 2026-09-23 P4 DONE — Pages generator and deployment workflow created.
-- 2026-09-23 P4.1 DONE — project-site URL corrected/documented as https://vishnuvcr.github.io/Paper-Trade-v1/.
-- 2026-09-23 P4.2 IN PROGRESS — Pages workflow changed to deploy on push to main; deployment run 35861408658 is currently in progress.
-- 2026-09-23 P5 DONE — CI validation passed after corrections.
+- 2026-09-23 P5 DONE — provider recovery, scheduler hardening and validation controls completed.
+- 2026-09-23 P6.1 DONE — NoDip now has two independently paper-traded far-expiry variants: 3W control and 1W alternative.
+- 2026-09-23 P6.2 DONE — Near-expiry/far-expiry leg mapping, MTM and near-expiry close logic updated.
+- 2026-09-23 P6.3 DONE — Manual workflow selectors and deterministic unit tests added.
 
-Current operational state: prospective paper-trading platform is on main; Pages deployment is being initialized/updated.
-- 2026-09-23 P5.1 DONE — Manual Runner #1 failure diagnosed as BSE/SENSEX provider JSON failure; master runner changed to fail closed per underlying and manual workflow hardened.
-
-- 2026-09-23 P5.2 DONE — Master Paper Runner #3 completed successfully; latest SENSEX signal used BSE_OFFICIAL_DERIVOPTIONCHAIN_IV and the dashboard now distinguishes resolved historical errors from current provider failures.
-
-- 2026-09-23 P5.3 DONE — Automated workflows hardened: pip caching, per-job timeouts, MC 09:30/09:35/09:40 redundancy inside its pre-registered acceptance window, and NoDip restricted to the 09:35 signal minute with fail-closed data errors. `paper-mark` remains responsible for scheduled MTM/close operations.
+Current phase: Phase 6 — NoDip Expiry Variants.
+Pending: CI validation, Pages build, merge to main after checks.

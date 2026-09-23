@@ -1,7 +1,7 @@
 import pandas as pd
 from .calendar import nse_fo_holidays,is_trading_day
 from .ledger import append,now_utc
-from .run_nodip import run as nodip_run
+from .run_nodip import run_all_variants
 from .scan import scan_mc
 
 
@@ -22,7 +22,7 @@ def mc_safe(underlying,now=None,manual=False):
 def master(manual=False):
  now=pd.Timestamp.now(tz='Asia/Kolkata');out=[]
  try:
-  out.append(nodip_run(now,manual))
+  out.extend(run_all_variants(now,manual))
  except Exception as e:
   append('errors',{'timestamp_utc':now_utc(),'strategy':'NoDip','mode':'master','error':type(e).__name__,'message':str(e)})
   out.append({'strategy':'NoDip','underlying':'NIFTY','observed_ist':now.isoformat(),'prospective_valid':False,'status':'DATA_UNAVAILABLE','gate':False,'trade':False})
