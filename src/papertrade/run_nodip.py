@@ -15,8 +15,9 @@ def run(now=None,manual=False):
  base={'strategy':'NoDip','underlying':'NIFTY','observed_ist':now.isoformat(),'prospective_valid':False}
  if not is_trading_day(now.date(),holidays): base.update(status='NOT_TRADING_DAY',gate=False,trade=False);append('signals',base);return base
  if manual or not(time(9,25)<=now.time()<=time(9,45)): base.update(status='DIAGNOSTIC' if manual else 'TIMING_INVALID',gate=False,trade=False);append('signals',base);return base
- chain,meta=option_chain('NIFTY'); expiry=nearest_expiry(chain,now.date()); x=chain[chain.expiry==pd.Timestamp(expiry)]
- daily=daily_close('^NSEI'); prev=float(daily[daily.index<pd.Timestamp(now.date())].iloc[-1]); spot,spot_src=parity_spot(x,prev); s=nodip_signal(x,spot,pd.Timestamp(expiry)); sid=stable_id({'strategy':'NoDip','expiry':str(expiry),'date':str(now.date())}); base.update(s);base.update({'signal_id':sid,'provider':meta,'spot':spot,'spot_source':spot_src,'prospective_valid':True,'trade':False})
+ chain,meta=option_chain('NIFTY'); expiry=nearest_expiry(chain,now.date());
+ if expiry<=now.date(): base.update(expiry=str(expiry),status='NO_EXPIRY_HEADROOM',gate=False,trade=False);append('signals',base);return base
+ x=chain[chain.expiry==pd.Timestamp(expiry)];daily=daily_close('^NSEI');prev=float(daily[daily.index<pd.Timestamp(now.date())].iloc[-1]);spot,spot_src=parity_spot(x,prev);s=nodip_signal(x,spot,pd.Timestamp(expiry));sid=stable_id({'strategy':'NoDip','expiry':str(expiry),'date':str(now.date())});base.update(s);base.update({'signal_id':sid,'provider':meta,'spot':spot,'spot_source':spot_src,'prospective_valid':True,'trade':False})
  already=any(p.get('strategy')=='NoDip' and p.get('expiry')==str(expiry) for p in open_positions().values())
  if s['gate'] and not already:
   try:
