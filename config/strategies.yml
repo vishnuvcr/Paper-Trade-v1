@@ -8,11 +8,18 @@ nodip:
   underlying: NIFTY
   signal_time: "09:35"
   gate_cbr_max: 1.20
-  expiry_selection: nearest_listed
+  near_expiry_selection: nearest_listed
+  far_expiry_variants:
+    nodip_3w:
+      label: "NoDip — 3W far expiry"
+      weeks_from_near_expiry: 3
+    nodip_1w:
+      label: "NoDip — 1W far expiry"
+      weeks_from_near_expiry: 1
   near_definition: ATM
   far_definition: adjacent_listed_strike
   exit:
-    rule: previous_trading_session
+    rule: previous_trading_session_before_near_expiry
     time: "15:20"
 
 mc_rq6:
