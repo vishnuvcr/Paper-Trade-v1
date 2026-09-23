@@ -24,6 +24,8 @@ def select_nodip_expiries(chain,today,far_weeks):
 def nodip_signal(chain,spot,near_expiry,far_expiry=None,variant="NODIP_3W"):
     # Backward-compatible unit-test/control signature: when no far expiry is supplied,
     # use the same expiry for both legs. Production runners always provide a selected far expiry.
+    if far_expiry is None:
+        far_expiry=near_expiry
     near=chain[chain.expiry==pd.Timestamp(near_expiry)]
     far=chain[chain.expiry==pd.Timestamp(far_expiry)]
     if near.empty or far.empty:
@@ -47,8 +49,8 @@ def nodip_signal(chain,spot,near_expiry,far_expiry=None,variant="NODIP_3W"):
         raise ValueError("missing adjacent far-expiry strikes")
 
     labels={"NEAR_CE":near_ce,"NEAR_PE":near_pe,"FAR_CE":far_ce,"FAR_PE":far_pe}
-    expiries={"NEAR_CE":str(near_expiry),"NEAR_PE":str(near_expiry),
-              "FAR_CE":str(far_expiry),"FAR_PE":str(far_expiry)}
+    expiries={"NEAR_CE":str(pd.Timestamp(near_expiry).date()),"NEAR_PE":str(pd.Timestamp(near_expiry).date()),
+              "FAR_CE":str(pd.Timestamp(far_expiry).date()),"FAR_PE":str(pd.Timestamp(far_expiry).date())}
 
     px={}
     for lab in labels:
@@ -64,8 +66,8 @@ def nodip_signal(chain,spot,near_expiry,far_expiry=None,variant="NODIP_3W"):
     return {
         "strategy":variant,
         "underlying":"NIFTY",
-        "near_expiry":str(near_expiry),
-        "far_expiry":str(far_expiry),
+        "near_expiry":str(pd.Timestamp(near_expiry).date()),
+        "far_expiry":str(pd.Timestamp(far_expiry).date()),
         "atm":atm,
         "strikes":labels,
         "leg_expiries":expiries,
