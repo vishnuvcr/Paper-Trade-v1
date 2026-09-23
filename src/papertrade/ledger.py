@@ -1,11 +1,15 @@
 from pathlib import Path
 import json
 from datetime import datetime
-ROOT=Path(__file__).resolve().parents[2]; DATA=ROOT/'data'/'ledger'
-for n in ('runs','signals','events','errors'): (DATA/(n+'.jsonl')).parent.mkdir(parents=True,exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2]
+DATA=ROOT/'data'/'ledger'
+for n in ('runs','signals','events','errors'):
+ (DATA/(n+'.jsonl')).parent.mkdir(parents=True,exist_ok=True)
 
 def append(name,obj):
- p=DATA/(name+'.jsonl'); with open(p,'a',encoding='utf-8') as f:f.write(json.dumps(obj,default=str,sort_keys=True)+'\n')
+ p=DATA/(name+'.jsonl')
+ with open(p,'a',encoding='utf-8') as f:
+  f.write(json.dumps(obj,default=str,sort_keys=True)+'\n')
 
 def read(name):
  p=DATA/(name+'.jsonl')
