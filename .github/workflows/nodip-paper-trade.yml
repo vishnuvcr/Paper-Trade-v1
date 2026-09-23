@@ -3,7 +3,16 @@ name: NoDip Paper Trade
 on:
   workflow_dispatch:
     inputs:
+      variant:
+        description: NoDip expiry variant
+        type: choice
+        options:
+          - ALL
+          - NODIP_3W
+          - NODIP_1W
+        default: ALL
       diagnostic:
+        description: Run as diagnostic only
         type: boolean
         default: true
   schedule:
@@ -35,7 +44,13 @@ jobs:
           PYTHONPATH: .
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.diagnostic }}" = "true" ]; then
-            python -m src.papertrade.cli scan --strategy NODIP --manual
+            if [ "${{ inputs.variant }}" = "NODIP_3W" ]; then
+              python -m src.papertrade.cli scan --strategy NODIP_3W --manual
+            elif [ "${{ inputs.variant }}" = "NODIP_1W" ]; then
+              python -m src.papertrade.cli scan --strategy NODIP_1W --manual
+            else
+              python -m src.papertrade.cli scan --strategy NODIP --manual
+            fi
           else
             python -m src.papertrade.cli scan --strategy NODIP
           fi
