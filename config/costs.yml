@@ -1,0 +1,32 @@
+brokerage:
+  provider: Paytm Money
+  rupees_per_unique_executed_order: 10.0
+  configurable: true
+  note: "Research assumption based on current public F&O FAQ; verify account-specific pricing separately."
+
+stt:
+  option_sale_premium_rate:
+    before_2026_04_01: 0.0010
+    from_2026_04_01: 0.0015
+  option_exercise_intrinsic_rate:
+    before_2026_04_01: 0.00125
+    from_2026_04_01: 0.0015
+
+venue:
+  exchange_transaction_rupees_per_crore:
+    NIFTY: 3553.0
+    SENSEX: 3250.0
+  sebi_rate_on_turnover: 0.000001
+  stamp_duty_on_buy_turnover: 0.00003
+  gst_rate: 0.18
+  configurable: true
+
+instruments:
+  NIFTY:
+    lot_size: 65
+    effective_from: "2026-01-06"
+    source_label: "2026 research-controlled schedule"
+  SENSEX:
+    lot_size: 20
+    effective_from: "2024-11-20"
+    source_label: "2026 research-controlled schedule"
