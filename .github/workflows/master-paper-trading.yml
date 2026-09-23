@@ -1,16 +1,32 @@
-name: Manual Runner
+name: Master Paper Runner
+
 on:
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: master-paper-run
+  cancel-in-progress: false
+
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.12'}
-      - run: pip install -r requirements.txt
-      - run: PYTHONPATH=. python -m src.papertrade.cli scan --strategy ALL
-      - uses: EndBug/add-and-commit@v9
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run all strategies
+        env:
+          PYTHONPATH: .
+        run: python -m src.papertrade.cli scan --strategy ALL --manual
+      - name: Commit paper-trading ledger
+        uses: EndBug/add-and-commit@v9
         with:
           add: data
-          message: 'ops: manual paper run'
+          message: 'ops: master manual paper run'
