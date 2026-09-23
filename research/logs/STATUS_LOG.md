@@ -13,3 +13,5 @@ Current operational state: prospective paper-trading platform is on main; Pages 
 - 2026-09-23 P5.1 DONE — Manual Runner #1 failure diagnosed as BSE/SENSEX provider JSON failure; master runner changed to fail closed per underlying and manual workflow hardened.
 
 - 2026-09-23 P5.2 DONE — Master Paper Runner #3 completed successfully; latest SENSEX signal used BSE_OFFICIAL_DERIVOPTIONCHAIN_IV and the dashboard now distinguishes resolved historical errors from current provider failures.
+
+- 2026-09-23 P5.3 DONE — Automated workflows hardened: pip caching, per-job timeouts, MC 09:30/09:35/09:40 redundancy inside its pre-registered acceptance window, and NoDip restricted to the 09:35 signal minute with fail-closed data errors. `paper-mark` remains responsible for scheduled MTM/close operations.
