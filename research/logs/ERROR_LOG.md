@@ -31,3 +31,8 @@ Master Paper Runner #3 completed successfully after the BSE provider correction.
 ## 2026-09-23 — Scheduler reliability review
 
 GitHub Actions schedules are correctly configured with `Asia/Kolkata`, but GitHub documents that scheduled runs can be delayed under platform load and sufficiently high load can drop queued runs. Therefore exact wall-clock execution cannot be guaranteed by GitHub Actions alone. To reduce operational risk without changing the frozen NoDip signal definition, the workflows were hardened with pip caching, explicit timeouts, and MC-RQ6 redundant attempts at 09:30/09:35/09:40 within its already registered 09:25–09:40 acceptance window. NoDip remains fail-closed outside its 09:35 signal minute rather than silently turning a delayed run into a different signal.
+
+
+## 2026-09-23 — Phase 6 CI test correction
+
+The initial Phase 6 CI run failed 3 tests because the existing unit tests still called the old single-expiry NoDip function signature, while the new variant implementation requires near/far expiry context. One new test also compared pandas timestamp string formatting too strictly. The implementation was corrected with a backward-compatible default for the legacy test/control signature, and the new assertions were made date-format tolerant. Production runners always provide explicit far expiry and variant values.
