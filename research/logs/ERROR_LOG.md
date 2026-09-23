@@ -26,3 +26,8 @@ The first SENSEX implementation relied solely on indiaopt BSEClient with scrip `
 ## 2026-09-23 — Successful provider recovery
 
 Master Paper Runner #3 completed successfully after the BSE provider correction. The latest SENSEX signal recorded `BSE_OFFICIAL_DERIVOPTIONCHAIN_IV` with `official=true`, expiry `24 Sep 2026`, and no new SENSEX provider error. The earlier two `999920` indiaopt failures remain as historical audit records.
+
+
+## 2026-09-23 — Scheduler reliability review
+
+GitHub Actions schedules are correctly configured with `Asia/Kolkata`, but GitHub documents that scheduled runs can be delayed under platform load and sufficiently high load can drop queued runs. Therefore exact wall-clock execution cannot be guaranteed by GitHub Actions alone. To reduce operational risk without changing the frozen NoDip signal definition, the workflows were hardened with pip caching, explicit timeouts, and MC-RQ6 redundant attempts at 09:30/09:35/09:40 within its already registered 09:25–09:40 acceptance window. NoDip remains fail-closed outside its 09:35 signal minute rather than silently turning a delayed run into a different signal.
