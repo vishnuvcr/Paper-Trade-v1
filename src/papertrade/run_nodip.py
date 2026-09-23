@@ -22,7 +22,7 @@ def run(now=None,manual=False):
 
     # Frozen signal time. We deliberately do not "catch up" with a late quote,
     # because that would change the prospective strategy definition.
-    if manual or now.time()!=time(9,35):
+    if manual or not (time(9,35) <= now.time() < time(9,36)):
         status='DIAGNOSTIC' if manual else 'TIMING_INVALID'
         base.update(status=status,gate=False,trade=False)
         append('signals',base)
