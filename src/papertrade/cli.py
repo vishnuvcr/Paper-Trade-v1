@@ -2,7 +2,7 @@ import argparse
 from .mark import mark_all
 from .runtime import master,mc_safe
 from .run_nodip import run as nodip_run
-from .nodip_exit import close_due
+from .nodip_close import close_due
 from .lock import check,capture
 
 def main():
