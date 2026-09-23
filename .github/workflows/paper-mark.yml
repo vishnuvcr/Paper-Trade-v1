@@ -1,0 +1,29 @@
+name: Paper Mark and Close
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 10,12,14,15 * * 1-5'
+      timezone: Asia/Kolkata
+    - cron: '25 15 * * 1-5'
+      timezone: Asia/Kolkata
+    - cron: '35 15 * * 1-5'
+      timezone: Asia/Kolkata
+permissions:
+  contents: write
+jobs:
+  mark:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: paper-mark
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r requirements.txt
+      - run: PYTHONPATH=. python -m src.papertrade.cli mark
+      - name: Persist records
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: data
+          message: 'ops: paper mark update'

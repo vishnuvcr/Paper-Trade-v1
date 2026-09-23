@@ -1,4 +1,4 @@
-name: NoDip Paper Trade
+name: MC-RQ6 Paper Trade
 on:
   workflow_dispatch:
     inputs:
@@ -6,9 +6,7 @@ on:
         type: boolean
         default: true
   schedule:
-    - cron: '35 9 * * 1-5'
-      timezone: Asia/Kolkata
-    - cron: '25 15 * * 1-5'
+    - cron: '30 9 * * 1-5'
       timezone: Asia/Kolkata
 permissions:
   contents: write
@@ -16,23 +14,23 @@ jobs:
   run:
     runs-on: ubuntu-latest
     concurrency:
-      group: nodip-paper-trade
+      group: mc-rq6-paper-trade
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: pip install -r requirements.txt
-      - name: Run NoDip
+      - name: Run MC-RQ6
         env: {PYTHONPATH: .}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.diagnostic }}" = "true" ]; then
-            python -m src.papertrade.cli scan --strategy NODIP --manual
+            python -m src.papertrade.cli scan --strategy MC --manual
           else
-            python -m src.papertrade.cli scan --strategy NODIP
+            python -m src.papertrade.cli scan --strategy MC
           fi
       - name: Persist records
         uses: EndBug/add-and-commit@v9
         with:
           add: data
-          message: 'ops: NoDip update'
+          message: 'ops: MC-RQ6 update'
