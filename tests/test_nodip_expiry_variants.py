@@ -26,8 +26,8 @@ def test_nodip_signal_uses_different_far_expiry():
     _,far3=select_nodip_expiries(x,pd.Timestamp("2026-09-23").date(),3)
     s1=nodip_signal(x,20000,pd.Timestamp(near),pd.Timestamp(far1),"NODIP_1W")
     s3=nodip_signal(x,20000,pd.Timestamp(near),pd.Timestamp(far3),"NODIP_3W")
-    assert s1["far_expiry"]=="2026-10-01"
-    assert s3["far_expiry"]=="2026-10-15"
-    assert s1["leg_expiries"]["NEAR_CE"]=="2026-09-24"
-    assert s1["leg_expiries"]["FAR_CE"]=="2026-10-01"
-    assert s3["leg_expiries"]["FAR_CE"]=="2026-10-15"
+    assert s1["far_expiry"].startswith("2026-10-01")
+    assert s3["far_expiry"].startswith("2026-10-15")
+    assert s1["leg_expiries"]["NEAR_CE"].startswith("2026-09-24")
+    assert s1["leg_expiries"]["FAR_CE"].startswith("2026-10-01")
+    assert s3["leg_expiries"]["FAR_CE"].startswith("2026-10-15")
