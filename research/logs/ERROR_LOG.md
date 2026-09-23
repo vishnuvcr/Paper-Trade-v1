@@ -21,3 +21,8 @@ The master manual run failed because the SENSEX `indiaopt` BSE endpoint returned
 ## 2026-09-23 — SENSEX provider correction
 
 The first SENSEX implementation relied solely on indiaopt BSEClient with scrip `999920`, which failed on a live GitHub Actions run because BSE returned non-JSON content. Research of current public integrations found the BSE official API path `DerivOptionChain_IV/w` with the SENSEX scrip code `1` and the expiry endpoint `ddlExpiry_IV/w`. The runtime was corrected to use this official BSE API first, with indiaopt retained only as a fallback; no synthetic or stale quote is used.
+
+
+## 2026-09-23 — Successful provider recovery
+
+Master Paper Runner #3 completed successfully after the BSE provider correction. The latest SENSEX signal recorded `BSE_OFFICIAL_DERIVOPTIONCHAIN_IV` with `official=true`, expiry `24 Sep 2026`, and no new SENSEX provider error. The earlier two `999920` indiaopt failures remain as historical audit records.
