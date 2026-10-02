@@ -66,3 +66,5 @@
 {"gate": false, "observed_ist": "2026-10-02T15:56:30.023094+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "SENSEX"}
 {"gate": false, "observed_ist": "2026-10-02T15:57:19.595692+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "NODIP_3W", "strategy_label": "NoDip \u2014 3W far expiry", "trade": false, "underlying": "NIFTY"}
 {"gate": false, "observed_ist": "2026-10-02T15:57:19.596092+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "NODIP_1W", "strategy_label": "NoDip \u2014 1W far expiry", "trade": false, "underlying": "NIFTY"}
+{"gate": false, "observed_ist": "2026-10-02T15:57:57.995804+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "NIFTY"}
+{"gate": false, "observed_ist": "2026-10-02T15:57:57.996395+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "SENSEX"}
