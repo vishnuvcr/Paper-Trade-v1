@@ -158,3 +158,5 @@
 {"error": "RuntimeError", "gate": false, "observed_ist": "2026-10-19T15:19:53.661792+05:30", "prospective_valid": false, "status": "DATA_UNAVAILABLE", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "SENSEX"}
 {"gate": false, "observed_ist": "2026-10-20T14:36:37.887969+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "NIFTY"}
 {"gate": false, "observed_ist": "2026-10-20T14:36:37.888587+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "SENSEX"}
+{"gate": false, "observed_ist": "2026-10-20T14:51:19.034707+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "NIFTY"}
+{"gate": false, "observed_ist": "2026-10-20T14:51:19.035113+05:30", "prospective_valid": false, "status": "NOT_TRADING_DAY", "strategy": "MC-RQ6-v1", "trade": false, "underlying": "SENSEX"}
